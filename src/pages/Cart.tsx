@@ -74,9 +74,6 @@ const Cart: React.FC = () => {
             setCart(cartItems);
             dispatch(calculatePrice());
         }
-        else {
-            setDiscountApplied(false);
-        }
     }, [cartItems, discount]);
 
     return (
