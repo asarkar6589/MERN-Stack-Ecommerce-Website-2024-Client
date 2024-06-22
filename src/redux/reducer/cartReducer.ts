@@ -54,6 +54,9 @@ export const cartReducer = createSlice({
 
       if (state.cartItems.length === 0) {
         state.discount = 0;
+        state.subtotal = 0;
+        state.tax = 0;
+        state.total = 0;
       } else {
         // subtotal
         let total = 0;
