@@ -52,8 +52,8 @@ const Cart: React.FC = () => {
     };
 
 
+    const { data } = useCheckCouponQuery(name);
     const checkDiscount = () => {
-        const { data } = useCheckCouponQuery(name);
         if (data) {
             toast.success(`Discount of Rs ${data.discount} is applied`);
             dispatch(calculateDiscount(data.discount));
