@@ -1,15 +1,5 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import {
-  FLUSH,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-  REHYDRATE,
-  persistReducer,
-  persistStore,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import { configureStore } from "@reduxjs/toolkit";
+import { persistStore } from "redux-persist";
 import { cancellOrderAPI } from "./api/cancelledOrder";
 import { commentAPI } from "./api/comment";
 import { couponAPI } from "./api/coupon";
@@ -22,38 +12,22 @@ import { userAPI } from "./api/user";
 import { cartReducer } from "./reducer/cartReducer";
 import { userReducer } from "./reducer/userReducer";
 
-const persistConfiguration = {
-  key: "root",
-  version: 1,
-  storage,
-  serialize: true,
-  blacklist: [userReducer.name, userAPI.reducerPath],
-};
-
-const reducer = combineReducers({
-  [cartReducer.name]: cartReducer.reducer,
-  [userReducer.name]: userReducer.reducer,
-  [userAPI.reducerPath]: userAPI.reducer,
-  [productAPI.reducerPath]: productAPI.reducer,
-  [commentAPI.reducerPath]: commentAPI.reducer,
-  [couponAPI.reducerPath]: couponAPI.reducer,
-  [orderAPI.reducerPath]: orderAPI.reducer,
-  [payementAPI.reducerPath]: payementAPI.reducer,
-  [cancellOrderAPI.reducerPath]: cancellOrderAPI.reducer,
-  [statsAPI.reducerPath]: statsAPI.reducer,
-  [feedbackAPI.reducerPath]: feedbackAPI.reducer,
-});
-
-const persistedReducer = persistReducer(persistConfiguration, reducer);
-
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+    [cartReducer.name]: cartReducer.reducer,
+    [userReducer.name]: userReducer.reducer,
+    [userAPI.reducerPath]: userAPI.reducer,
+    [productAPI.reducerPath]: productAPI.reducer,
+    [commentAPI.reducerPath]: commentAPI.reducer,
+    [couponAPI.reducerPath]: couponAPI.reducer,
+    [orderAPI.reducerPath]: orderAPI.reducer,
+    [payementAPI.reducerPath]: payementAPI.reducer,
+    [cancellOrderAPI.reducerPath]: cancellOrderAPI.reducer,
+    [statsAPI.reducerPath]: statsAPI.reducer,
+    [feedbackAPI.reducerPath]: feedbackAPI.reducer,
+  },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }).concat(
+    getDefaultMiddleware().concat(
       userAPI.middleware,
       productAPI.middleware,
       commentAPI.middleware,
