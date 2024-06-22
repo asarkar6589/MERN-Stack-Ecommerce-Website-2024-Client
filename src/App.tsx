@@ -56,7 +56,6 @@ const MainContent = ({ user }: { user: any }) => {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
           <Route path="/search" element={<Search />} />
           <Route path="/product/:id" element={<ProductById />} />
           <Route path="/privacy" element={<Privacy />} />
@@ -67,6 +66,7 @@ const MainContent = ({ user }: { user: any }) => {
           <Route element={<ProtectedRoute isAuthenticated={user ? false : true} />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/cart" element={<Cart />} />
           </Route>
 
           {/* Only logged in user should be able to access these routes. */}
