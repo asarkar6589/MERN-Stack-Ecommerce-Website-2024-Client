@@ -23,6 +23,7 @@ const UpdateProduct = () => {
     const [updateProduct] = useUpdateProductMutation();
     const { refetch } = useGetAllAdminProductsQuery('');
     const [deleteProduct] = useDeleteProductMutation();
+    const [disable, setDisable] = useState<boolean>(false);
 
     const handelPhoto = (e: ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
@@ -33,6 +34,7 @@ const UpdateProduct = () => {
     }
 
     const submitHandeler = async (e: FormEvent<HTMLFormElement>) => {
+        setDisable(true);
         e.preventDefault();
 
         const formData = new FormData();
@@ -67,6 +69,7 @@ const UpdateProduct = () => {
             toast.error(error.message);
             return;
         }
+        setDisable(false);
     }
 
     const deleteProductHandeler = async () => {
@@ -205,7 +208,7 @@ const UpdateProduct = () => {
                             onChange={(e) => setBrand(e.target.value)}
                         />
 
-                        <button type="submit" className="w-96 rounded-md outline-none border p-3 bg-green-700">Update</button>
+                        <button disabled={disable} type="submit" className="w-96 rounded-md outline-none border p-3 bg-green-700">Update</button>
                     </form>
                 </div>
             </section>
