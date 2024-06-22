@@ -66,7 +66,6 @@ const MainContent = ({ user }: { user: any }) => {
           <Route element={<ProtectedRoute isAuthenticated={user ? false : true} />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/cart" element={<Cart />} />
           </Route>
 
           {/* Only logged in user should be able to access these routes. */}
@@ -79,6 +78,7 @@ const MainContent = ({ user }: { user: any }) => {
             <Route path="/pay" element={<CheckOut />} />
             <Route path="/order/:id" element={<OrderById />} />
             <Route path="/feedback" element={<Feedback />} />
+            <Route path="/cart" element={<Cart />} />
           </Route>
 
           {/* Admin routes & Protected Route */}
