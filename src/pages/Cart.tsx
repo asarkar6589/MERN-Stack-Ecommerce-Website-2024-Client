@@ -58,6 +58,7 @@ const Cart: React.FC = () => {
             toast.success(`Discount of Rs ${data.discount} is applied`);
             dispatch(calculateDiscount(data.discount));
             setDiscountApplied(true);
+            setName("");
         }
         else {
             toast.error("No Coupon exists");
@@ -73,11 +74,10 @@ const Cart: React.FC = () => {
             setCart(cartItems);
             dispatch(calculatePrice());
         }
+        else {
+            setDiscountApplied(false);
+        }
     }, [cartItems, discount]);
-
-    if (cartItems.length === 0) {
-        setDiscountApplied(false);
-    }
 
     return (
         <div className="mt-8 md:mt-32 px-4 md:px-8 lg:px-16 xl:px-32">
