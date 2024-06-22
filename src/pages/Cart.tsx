@@ -71,11 +71,8 @@ const Cart: React.FC = () => {
     useEffect(() => {
         if (cartItems) {
             setCart(cartItems);
+            dispatch(calculatePrice());
         }
-    }, [cartItems]);
-
-    useEffect(() => {
-        dispatch(calculatePrice());
     }, [cartItems, discount]);
 
     return (
