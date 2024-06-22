@@ -15,6 +15,7 @@ const Login = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const { user } = useSelector((state: { userReducer: initialUserStateType }) => state.userReducer);
+    const [disable, setDisable] = useState<boolean>(false);
     // const [redirect, setRedirect] = useState<boolean>(false);
 
     if (user) {
@@ -22,6 +23,7 @@ const Login = () => {
     }
 
     const submitHandeler = async (e: FormEvent<HTMLFormElement>) => {
+        setDisable(true);
         try {
             e.preventDefault();
 
@@ -44,6 +46,7 @@ const Login = () => {
         } catch (error: any) {
             toast.error(error.message || "Internal Server Error");
         }
+        setDisable(false);
     }
 
     return (
@@ -72,7 +75,7 @@ const Login = () => {
                     onChange={(e) => setPassword((e.target.value))}
                 />
 
-                <button type="submit" className="w-full rounded-md outline-none border p-3 bg-green-700 text-white">Login</button>
+                <button type="submit" className="w-full rounded-md outline-none border p-3 bg-green-700 text-white" disabled={disable}>Login</button>
 
                 <span className="text-sm text-center">
                     Don't have an account, <Link className="underline text-blue-800 font-bold" to={"/register"}>
