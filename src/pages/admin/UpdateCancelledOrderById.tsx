@@ -21,26 +21,26 @@ const UpdateCancelledOrderById = () => {
     useEffect(() => {
         refetch();
         if (data) {
-            setName(data.order.user.name);
+            setName(data.order.user?.name);
 
             // concanicate the address, city pincode and then paste it in the address.
             const { address: Address, city, pinCode, country } = data.order.shippingAddress
             let fullAddress = Address + " " + city + " " + country + " " + String(pinCode);
             setAddress(fullAddress);
 
-            setSubTotal(data.order.subTotal);
+            setSubTotal(data.order?.subTotal);
 
-            setShippingCharges(data.order.shippingCharges);
+            setShippingCharges(data.order?.shippingCharges);
 
-            setTax(data.order.tax);
+            setTax(data.order?.tax);
 
-            setDiscount(data.order.discount);
+            setDiscount(data.order?.discount);
 
-            setTotal(data.order.total);
+            setTotal(data.order?.total);
 
-            setStatus(data.order.status);
+            setStatus(data.order?.status);
 
-            setRefundStatus(data.order.refundStatus);
+            setRefundStatus(data.order?.refundStatus);
         }
     }, [data]);
     return (
@@ -123,7 +123,7 @@ interface OderedProductCard {
 const OrderedProductCard = ({ photo, name, price, quantity }: OderedProductCard) => {
     return (
         <div className="flex w-full gap-5 mb-5">
-            <img src={`${import.meta.env.VITE_PHOTO_URL}/${photo}`} alt={`${name}`} className="w-11 h-11 rounded-full" />
+            <img src={`${photo}`} alt={`${name}`} className="w-11 h-11 rounded-full" />
 
             <p>{name}</p>
 
