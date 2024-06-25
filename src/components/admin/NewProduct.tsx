@@ -63,7 +63,7 @@ const NewProduct = () => {
             return;
         }
 
-        setDisabled(true);
+        setDisabled(false);
     }
 
     return (
