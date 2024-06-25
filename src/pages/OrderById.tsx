@@ -124,7 +124,7 @@ interface OderedProductCard {
 const OrderedProductCard = ({ photo, name, price, quantity }: OderedProductCard) => {
     return (
         <div className="flex w-full gap-5 mb-5">
-            <img src={`${import.meta.env.VITE_PHOTO_URL}/${photo}`} alt={`${name}`} className="w-11 h-11 rounded-full" />
+            <img src={`${photo}`} alt={`${name}`} className="w-11 h-11 rounded-full" />
 
             <p>{name}</p>
 

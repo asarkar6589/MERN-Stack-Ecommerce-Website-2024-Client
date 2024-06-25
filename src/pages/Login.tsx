@@ -75,7 +75,11 @@ const Login = () => {
                     onChange={(e) => setPassword((e.target.value))}
                 />
 
-                <button type="submit" className="w-full rounded-md outline-none border p-3 bg-green-700 text-white" disabled={disable}>Login</button>
+                <button type="submit" className="w-full rounded-md outline-none border p-3 bg-green-700 text-white" disabled={disable}>
+                    {
+                        disable ? <span>Please Wait...</span> : <span>Login</span>
+                    }
+                </button>
 
                 <span className="text-sm text-center">
                     <Link className="underline text-blue-800 font-bold" to={"/forgetpassword"}>
