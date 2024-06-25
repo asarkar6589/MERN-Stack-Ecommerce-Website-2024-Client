@@ -28,6 +28,8 @@ const UpdateComment = lazy(() => import("./components/UpdateComment"));
 const Privacy = lazy(() => import("./components/Privacy"));
 const Delivery = lazy(() => import("./components/Delivery"));
 const About = lazy(() => import("./components/About"));
+const ForgetPassword = lazy(() => import("./components/ForgetPassword"));
+const UpdatePassword = lazy(() => import("./components/UpdatePassword"));
 const Dashboard = lazy(() => import("./components/admin/Dashboard"));
 const NewProduct = lazy(() => import("./components/admin/NewProduct"));
 const UpdateProfile = lazy(() => import("./pages/UpdateProfile"));
@@ -66,6 +68,8 @@ const MainContent = ({ user }: { user: any }) => {
           <Route element={<ProtectedRoute isAuthenticated={user ? false : true} />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/forgetpassword" element={<ForgetPassword />} />
+            <Route path="/resetpassword/:token" element={<UpdatePassword />} />
           </Route>
 
           {/* Only logged in user should be able to access these routes. */}

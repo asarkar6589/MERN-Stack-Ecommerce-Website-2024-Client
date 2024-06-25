@@ -10,6 +10,9 @@ import {
   UserForRegistration,
   getAllUsers,
   getProfileResponse,
+  sendMailResponse,
+  updatePasswordBody,
+  updatePasswordResponse,
 } from "../../types/api-types";
 
 export const userAPI = createApi({
@@ -64,6 +67,23 @@ export const userAPI = createApi({
         method: "PUT",
       }),
     }),
+    sendMail: builder.mutation<sendMailResponse, string>({
+      query: (email) => ({
+        url: "forgetpassword",
+        body: { email },
+        method: "POST",
+      }),
+    }),
+    updatePassword: builder.mutation<
+      updatePasswordResponse,
+      updatePasswordBody
+    >({
+      query: ({ token, password }) => ({
+        url: `resetpassword/${token}`,
+        body: { password },
+        method: "PUT",
+      }),
+    }),
   }),
 });
 
@@ -75,4 +95,6 @@ export const {
   useDeleteUserMutation,
   useLogoutMutation,
   useUpdateUserMutation,
+  useSendMailMutation,
+  useUpdatePasswordMutation,
 } = userAPI;

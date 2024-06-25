@@ -52,7 +52,7 @@ const AllCustomer = () => {
                 const users = data.users as User[];
                 const updateRows = users.map((user) => {
                     return {
-                        photo: <img src={`${import.meta.env.VITE_PHOTO_URL}/${user.photo}`} alt={user.name} className="w-11 h-11 rounded-full" />,
+                        photo: <img src={`${user.photo}`} alt={user.name} className="w-11 h-11 rounded-full" />,
                         name: user.name,
                         gender: user.gender,
                         email: user.email,

@@ -9,7 +9,7 @@ import { DeleCommentResponse } from "../types/api-types";
 import { Link } from "react-router-dom";
 
 const ShowCommentCard = (
-    { name, photo, title, description, commentedUser, id, RefetchComments, createdAt, updatedAt }: ShowReviewCardType
+    { name, photo, title, description, commentedUser, id, RefetchComments, createdAt }: ShowReviewCardType
 ) => {
     const { user } = useSelector((state: { userReducer: initialUserStateType }) => state.userReducer);
     const [disable, setDisable] = useState<boolean>(false);
@@ -47,9 +47,9 @@ const ShowCommentCard = (
     return (
         <div className="border rounded-lg shadow-lg w-full h-auto p-2 mb-2">
             {/* photo and name of the user */}
-            <section className="flex flex-col md:flex-row md:items-center gap-5">
+            <section className="flex flex-col md:flex-row md:items-center gap-7">
                 <img src={photo} alt={`${name}`} className="rounded-full w-11 h-11 md:w-16 md:h-16" />
-                <div className="flex flex-col md:flex-row items-center">
+                <div className="flex gap-3 flex-col md:flex-row items-center">
                     <h1 className="font-bold">{name}</h1>
                     {(user?._id === commentedUser) && (
                         <div className="md:ml-auto flex items-center mt-2 md:mt-0">
@@ -63,8 +63,7 @@ const ShowCommentCard = (
                             <Link to={`/comment/update/${id}`} className="border px-3 rounded-lg bg-red-600 text-white mr-2">
                                 Update
                             </Link>
-                            <span className="text-sm hidden md:inline-block">Created At: {String(createdAt).split('T')[0]}</span>
-                            <span className="text-sm hidden md:inline-block">Updated At: {String(updatedAt).split('T')[0]}</span>
+                            <span className="font-bold hidden md:inline-block">Date(yyyy-MM-DD): {String(createdAt).split('T')[0]}</span>
                         </div>
                     )}
                 </div>

@@ -15,6 +15,7 @@ const Register = () => {
     const [password, setPassword] = useState<string>("");
     const [gender, setGender] = useState<string>("");
     const [photo, setPhoto] = useState<File>();
+    const [disable, setDisable] = useState<boolean>(false);
 
     const handelPhoto = (e: ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
@@ -25,6 +26,7 @@ const Register = () => {
     }
 
     const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
+        setDisable(true);
         try {
             e.preventDefault();
 
@@ -56,6 +58,7 @@ const Register = () => {
         } catch (error) {
             toast.error("Error Occured");
         }
+        setDisable(false);
     }
 
     return (
@@ -142,7 +145,11 @@ const Register = () => {
                         onChange={handelPhoto}
                     />
 
-                    <button type="submit" className="w-full rounded-md outline-none border p-3 bg-green-700 text-white">Register</button>
+                    <button disabled={disable} type="submit" className="w-full rounded-md outline-none border p-3 bg-green-700 text-white">
+                        {
+                            disable ? <span>Please Wait...</span> : <span>Register</span>
+                        }
+                    </button>
                 </form>
             </div>
         </div>

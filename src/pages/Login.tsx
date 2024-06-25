@@ -4,9 +4,9 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../redux/api/user";
+import { getUserInfo } from "../redux/reducer/userReducer";
 import { LoginResponse } from "../types/api-types";
 import { initialUserStateType } from "../types/initialState-types";
-import { getUserInfo } from "../redux/reducer/userReducer";
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -77,6 +77,11 @@ const Login = () => {
 
                 <button type="submit" className="w-full rounded-md outline-none border p-3 bg-green-700 text-white" disabled={disable}>Login</button>
 
+                <span className="text-sm text-center">
+                    <Link className="underline text-blue-800 font-bold" to={"/forgetpassword"}>
+                        Forget Password
+                    </Link>
+                </span>
                 <span className="text-sm text-center">
                     Don't have an account, <Link className="underline text-blue-800 font-bold" to={"/register"}>
                         Register

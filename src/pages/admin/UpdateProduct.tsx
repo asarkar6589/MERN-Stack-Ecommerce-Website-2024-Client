@@ -123,7 +123,7 @@ const UpdateProduct = () => {
                     </div>
 
                     <div className="flex flex-col items-center">
-                        <img src={`${import.meta.env.VITE_PHOTO_URL}/${productData?.product.photo}`} alt="" className="w-52 h-52 mt-2" />
+                        <img src={`${productData?.product.photo}`} alt="" className="w-52 h-52 mt-2" />
 
                         <h1 className="text-2xl font-bold mt-5">{productData?.product.name}</h1>
 
@@ -208,7 +208,11 @@ const UpdateProduct = () => {
                             onChange={(e) => setBrand(e.target.value)}
                         />
 
-                        <button disabled={disable} type="submit" className="w-96 rounded-md outline-none border p-3 bg-green-700">Update</button>
+                        <button disabled={disable} type="submit" className="w-96 rounded-md outline-none border p-3 bg-green-700">
+                            {
+                                disable ? <span>Updating...</span> : <span>Update</span>
+                            }
+                        </button>
                     </form>
                 </div>
             </section>

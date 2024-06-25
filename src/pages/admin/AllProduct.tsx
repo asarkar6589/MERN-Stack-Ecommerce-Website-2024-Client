@@ -33,14 +33,15 @@ const columns = [
 
 
 const AllProduct = () => {
-    const { data, isLoading } = useGetAllAdminProductsQuery('');
+    const { data, isLoading, refetch } = useGetAllAdminProductsQuery('');
     const [rows, setRows] = useState<DataType[]>([]);
 
     useEffect(() => {
+        refetch()
         if (data) {
             const products = data.products as Product[];
             const updatedRows = products.map((product) => ({
-                photo: <img src={`${import.meta.env.VITE_PHOTO_URL}/${product.photo}`} alt={product.name} className="w-11 h-11" />,
+                photo: <img src={`${product.photo}`} alt={product.name} className="w-11 h-11" />,
                 name: product.name,
                 price: product.price,
                 stock: product.stock,

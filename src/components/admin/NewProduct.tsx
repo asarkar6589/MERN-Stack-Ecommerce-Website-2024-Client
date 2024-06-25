@@ -15,6 +15,7 @@ const NewProduct = () => {
     const [category, setCategory] = useState<string>("");
     const [brand, setBrand] = useState<string>("");
     const [newProduct] = useNewProductMutation();
+    const [disable, setDisabled] = useState<boolean>(false);
     const navigate = useNavigate();
 
     const handelPhoto = (e: ChangeEvent<HTMLInputElement>) => {
@@ -26,6 +27,7 @@ const NewProduct = () => {
     }
 
     const submitHandeler = async (e: FormEvent<HTMLFormElement>) => {
+        setDisabled(true);
         e.preventDefault();
 
         try {
@@ -60,6 +62,8 @@ const NewProduct = () => {
             toast.error(error.message);
             return;
         }
+
+        setDisabled(true);
     }
 
     return (
@@ -149,11 +153,15 @@ const NewProduct = () => {
                         onChange={(e) => setBrand(e.target.value)}
                     />
 
-                    <button type="submit" className="w-96 rounded-md outline-none border p-3 bg-green-700">Add</button>
+                    <button disabled={disable} type="submit" className="w-96 rounded-md outline-none border p-3 bg-green-700">
+                        {
+                            disable ? <span>Please Wait...</span> : <span>Add</span>
+                        }
+                    </button>
                 </form>
             </section>
         </div>
     )
 }
 
-export default NewProduct
+export default NewProduct;

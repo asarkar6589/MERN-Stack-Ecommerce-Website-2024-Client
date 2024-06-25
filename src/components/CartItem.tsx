@@ -15,7 +15,7 @@ const CartItem = ({ cartItem, incrementHandeler, decrementHandeler, deleteHandel
     return (
         <section className="flex flex-col md:flex-row justify-around items-center mb-6 md:mb-11 text-lg mt-5">
             <div className="mb-4 md:mb-0">
-                <img src={`${import.meta.env.VITE_PHOTO_URL}/${photo}`} alt={cartItem.name} style={{
+                <img src={`${photo}`} alt={cartItem.name} style={{
                     width: "100%",
                     maxWidth: "10rem",
                     height: "auto",

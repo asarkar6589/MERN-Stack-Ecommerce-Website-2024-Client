@@ -39,13 +39,13 @@ const ProductCard = ({ id, name, photo, price, stock }: ProductCartType) => {
 
     useEffect(() => {
         refetch();
-    });
+    }, [refetch]);
 
     return (
         <div className="flex flex-col justify-center items-center p-3 bg-slate-200 rounded-xl w-full max-w-xs m-4">
             <Link to={`/product/${id}`} className="flex flex-col justify-center w-full items-center mt-2">
                 <div>
-                    <img src={`${import.meta.env.VITE_PHOTO_URL}/${photo}`} alt={name} className="h-32 w-full object-contain" />
+                    <img src={`${photo}`} alt={name} className="h-32 w-full object-contain" />
                 </div>
 
                 <div>

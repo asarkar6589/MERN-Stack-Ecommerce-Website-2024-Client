@@ -20,6 +20,7 @@ const UpdateProfile = () => {
     const [password, setPassword] = useState<string>("");
     const [gender, setGender] = useState<string>("");
     const [photo, setPhoto] = useState<File>();
+    const [disable, setDisable] = useState<boolean>(false);
 
     if (!user) {
         return <Navigate to="/" />
@@ -34,6 +35,7 @@ const UpdateProfile = () => {
     }
 
     const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
+        setDisable(true);
         try {
             e.preventDefault();
 
@@ -59,6 +61,8 @@ const UpdateProfile = () => {
         } catch (error) {
             toast.error("Error Occurred");
         }
+
+        setDisable(false);
     }
 
     useEffect(() => {
@@ -138,7 +142,11 @@ const UpdateProfile = () => {
                         className="w-96 rounded-md outline-none border p-3"
                         onChange={handlePhoto}
                     />
-                    <button type="submit" className="w-96 rounded-md outline-none border p-3 bg-green-700">Update</button>
+                    <button disabled={disable} type="submit" className="w-96 rounded-md outline-none border p-3 bg-green-700">
+                        {
+                            disable ? <span>Updating</span> : <span>Update</span>
+                        }
+                    </button>
                 </form>
             </div>
         </div>

@@ -55,7 +55,7 @@ const UserProfile = () => {
             <section className="flex mt-20 flex-col items-center justify-center p-4 md:p-10">
                 <div className="flex flex-col md:flex-row w-full max-w-4xl items-center justify-center gap-9 bg-white p-5 rounded-lg shadow-lg">
                     <div className="flex flex-col justify-center items-center gap-5 md:gap-7">
-                        <img className="rounded-full w-40 h-40 md:w-56 md:h-56 shadow-lg" src={`${import.meta.env.VITE_PHOTO_URL}/${user.photo}`} alt={user.name} />
+                        <img className="rounded-full w-40 h-40 md:w-56 md:h-56 shadow-lg" src={`${user.photo}`} alt={user.name} />
                         <span className="font-bold text-center mt-5 md:mt-7">Name - {name}</span>
                         <span className="font-bold text-center">Email - {email}</span>
                         <span className="font-bold text-center">Phone Number - {number}</span>

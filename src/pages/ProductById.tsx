@@ -99,7 +99,7 @@ const ProductById = () => {
                     <section className="flex flex-col md:flex-row justify-around">
                         <div className="w-full md:w-1/2 p-5 rounded-lg flex justify-center items-center">
                             <img
-                                src={`${import.meta.env.VITE_PHOTO_URL}/${data?.product.photo}`}
+                                src={`${data.product.photo}`}
                                 alt={data.product.name}
                                 className="w-full h-auto md:w-3/4 lg:w-2/3 xl:w-1/2"
                             />
@@ -170,7 +170,7 @@ const ProductById = () => {
                                 <ShowCommentCard
                                     key={review._id}
                                     name={review.user?.name}
-                                    photo={`${import.meta.env.VITE_PHOTO_URL}/${review.user?.photo}`}
+                                    photo={`${review.user.photo}`}
                                     title={review.title}
                                     description={review.description}
                                     commentedUser={review.user?._id}
